@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    image: vongmoplayer/mern-backend:1.0
+    container_name: mern-backend-hub
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb+srv://cloud_lab:qaapvt9G0HIYy24q@cluster0.uz2uojh.mongodb.net/cloud_lab?retryWrites=true&w=majority&appName=Cluster0
+      - PORT=5000
+
+  frontend:
+    image: vongmoplayer/mern-frontend:2.0
+    container_name: mern-frontend-hub
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

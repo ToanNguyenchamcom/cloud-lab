@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Quản Lý Sinh Viên - Buổi 3 Docker MERN</h2>
+      <h2>Quản Lý Sinh Viên - Buổi 4 Docker Hub v2.0</h2>
       <form onSubmit={handleAdd} style={{ marginBottom: '20px' }}>
         <input placeholder="MSSV" value={studentId} onChange={(e) => setStudentId(e.target.value)} required style={{ marginRight: '8px' }} />
         <input placeholder="Họ tên" value={name} onChange={(e) => setName(e.target.value)} required style={{ marginRight: '8px' }} />
