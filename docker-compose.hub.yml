@@ -1,0 +1,7 @@
+frontend:
+  image: vongmoplayer/mern-frontend:2.0
+  container_name: mern-frontend-hub
+  ports:
+    - "3000:3000"
+  depends_on:
+    - backend

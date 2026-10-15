@@ -1,5 +1,7 @@
-
 import { useEffect, useState } from 'react';
+
+// Khai báo URL Backend (tự động nhận biến môi trường nếu có, nếu không thì dùng link Render)
+const API_URL = import.meta.env.VITE_API_URL || 'https://mern-backend-236939.onrender.com';
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -8,7 +10,7 @@ function App() {
   const [email, setEmail] = useState('');
 
   const fetchStudents = () => {
-    fetch('http://localhost:5000/api/students')
+    fetch(`${API_URL}/api/students`)
       .then((res) => res.json())
       .then((data) => setStudents(Array.isArray(data) ? data : []))
       .catch((err) => console.error(err));
@@ -20,7 +22,7 @@ function App() {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/students', {
+    fetch(`${API_URL}/api/students`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ studentId, name, email }),
@@ -35,7 +37,7 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/students/${id}`, { method: 'DELETE' })
+    fetch(`${API_URL}/api/students/${id}`, { method: 'DELETE' })
       .then(() => fetchStudents())
       .catch((err) => console.error(err));
   };
