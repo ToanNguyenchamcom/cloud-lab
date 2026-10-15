@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// Khai báo URL Backend (tự động nhận biến môi trường nếu có, nếu không thì dùng link Render)
-const API_URL = import.meta.env.VITE_API_URL || 'https://mern-backend-236939.onrender.com';
-
 function App() {
   const [students, setStudents] = useState([]);
   const [studentId, setStudentId] = useState('');
@@ -10,7 +7,7 @@ function App() {
   const [email, setEmail] = useState('');
 
   const fetchStudents = () => {
-    fetch(`${API_URL}/api/students`)
+    fetch('/api/students')
       .then((res) => res.json())
       .then((data) => setStudents(Array.isArray(data) ? data : []))
       .catch((err) => console.error(err));
@@ -22,7 +19,7 @@ function App() {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    fetch(`${API_URL}/api/students`, {
+    fetch('/api/students', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ studentId, name, email }),
@@ -37,14 +34,14 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    fetch(`${API_URL}/api/students/${id}`, { method: 'DELETE' })
+    fetch(`/api/students/${id}`, { method: 'DELETE' })
       .then(() => fetchStudents())
       .catch((err) => console.error(err));
   };
 
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Quản Lý Sinh Viên - Buổi 3 Docker MERN</h2>
+      <h2>Quản Lý Sinh Viên - Buổi 6 Rolling Updates v2.0</h2>
       <form onSubmit={handleAdd} style={{ marginBottom: '20px' }}>
         <input placeholder="MSSV" value={studentId} onChange={(e) => setStudentId(e.target.value)} required style={{ marginRight: '8px' }} />
         <input placeholder="Họ tên" value={name} onChange={(e) => setName(e.target.value)} required style={{ marginRight: '8px' }} />
